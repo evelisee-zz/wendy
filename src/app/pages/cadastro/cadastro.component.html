@@ -1,1 +1,31 @@
-<p>cadastro works!</p>
+<h3>Cadastro</h3>
+<form #cadastro="ngForm" (ngSubmit)="cadastrar(cadastro)" class="container-form">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="Nome" #nome="ngModel" name="nome" [(ngModel)]="dadosCadastro.nome" required>
+    <label class="mdl-textfield__label" for="Nome">Nome</label>
+    <span class="mdl-textfield__error" *ngIf="nome.invalid && nome.touched">Campo obrigatório</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="raca" #raca="ngModel" name="raca"  [(ngModel)]="dadosCadastro.raca" required>
+    <label class="mdl-textfield__label" for="raca">Raça</label>
+    <span class="mdl-textfield__error" *ngIf="raca.invalid && raca.touched">Campo obrigatório</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="classe" #classe="ngModel" name="classe" [(ngModel)]="dadosCadastro.classe" required>
+    <label class="mdl-textfield__label" for="classe">Classe</label>
+    <span class="mdl-textfield__error" *ngIf="classe.invalid && classe.touched">Campo obrigatório</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="nivel" #nivel="ngModel" name="nivel" [(ngModel)]="dadosCadastro.nivel" required>
+    <label class="mdl-textfield__label" for="nivel">Nivel</label>
+    <span class="mdl-textfield__error" *ngIf="nivel.invalid && nivel.touched">Campo obrigatório</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="phone" #phone="ngModel" name="phone" [(ngModel)]="dadosCadastro.phone" required>
+    <label class="mdl-textfield__label" for="phone">Telefone do Jogador</label>
+    <span class="mdl-textfield__error" *ngIf="phone.invalid && phone.touched">Campo obrigatório</span>
+  </div>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+    Adicionar
+  </button>
+</form>

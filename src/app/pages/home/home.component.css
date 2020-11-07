@@ -1,0 +1,11 @@
+.purple > i{ 
+    color: blueviolet;
+}
+.hidden {
+    display: none;
+}
+
+.demo-list-action img {
+    width: 80px;
+    height: 80px;
+}
