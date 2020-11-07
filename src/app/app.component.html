@@ -27,25 +27,30 @@
   <h1>Cadastro</h1>
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="nome">
+    <input (input)="getFormValue($event, 'nome')" class="mdl-textfield__input" type="text" id="nome">
     <label class="mdl-textfield__label" for="nome">Nome</label>
   </div>
+  {{form.nome}}
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="raca">
+    <input (input)="getFormValue($event, 'raca')" class="mdl-textfield__input" type="text" id="raca">
     <label class="mdl-textfield__label" for="raca">Raça</label>
   </div>
+  {{form.raca}}
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="classe">
+    <input (input)="getFormValue($event, 'classe')" class="mdl-textfield__input" type="text" id="classe">
     <label class="mdl-textfield__label" for="classe">Classe</label>
   </div>
+  {{form.classe}}
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="nivel">
+    <input (input)="getFormValue($event, 'nivel')" class="mdl-textfield__input" type="text" id="nivel">
     <label class="mdl-textfield__label" for="nivel">Nível</label>
   </div>
+  {{form.nivel}}
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="telefone">
+    <input (input)="getFormValue($event, 'telefone')" class="mdl-textfield__input" type="text" id="telefone">
     <label class="mdl-textfield__label" for="telefone">Telefone</label>
   </div>
+  {{form.telefone}}
 
   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
     Salvar
