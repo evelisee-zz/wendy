@@ -6,11 +6,20 @@ import { Component } from "@angular/core";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "wendy";
-  isDisabled = false;
-  urlAvatar = "https://avatars2.githubusercontent.com/u/10232707?s=460&u=464e1e65dfb54dcebfd508e7697e123963e776b7&v=4";
+valueInput = "";
+isHidden = false;
+d20 = null;
 
-  buttonClick(){
-    console.log('Clicou no botão');
+  getValue(event: InputEvent){
+    const evento = <HTMLTextAreaElement>event.target;
+    this.valueInput = evento.value;
+  }
+  
+  favoritar() {
+    this.isHidden = !this.isHidden;
+  }
+
+  calcD20() {
+    this.d20 = Math.floor((Math.random() * 20) + 1);
   }
 }
