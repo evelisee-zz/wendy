@@ -1,16 +1,35 @@
-<h2>Listagem</h2>
-    
+
+{{dateFormat | date: 'HH:mm dd/MM/yyyy'}}
+{{numberFormat | currency: 'BRL'}}
+{{valor | xablau}}
 <div class="demo-list-action mdl-list">
   <div class="mdl-list__item" *ngFor="let lista of listagem; let i = index">
     <span class="mdl-list__item-primary-content">
-      <img class="material-icons mdl-list__item-avatar" [src]="lista.imgSrc">
-      <span>{{lista.classe}}</span>
+      <!-- <img class="material-icons mdl-list__item-avatar" [src]="lista.imgSrc"> -->
+      <span>{{lista.nome}}</span>
     </span>
     <span class="mdl-list__item-secondary-content">
-      <span>{{lista.descricao}}</span>
+      <span>{{lista.descricao | slice:0:140}}</span>
     </span>
-    <a class="mdl-list__item-secondary-action"  [ngClass]="{'purple': lista.favoritado}" (click)="favoritar(i)">
+    <!-- <a class="mdl-list__item-secondary-action"  [ngClass]="{'purple': lista.favoritado}" (click)="favoritar(i)">
       <i class="material-icons">star</i>
-    </a>
+    </a> -->
   </div>
 </div>
+
+  <h2>Busca CEP:</h2>
+  <input type="number" placeholder="digite seu cep" (input)="inputCep($event.target.value)" />
+  <button (click)="buscarNaApi()">buscar</button><br/>
+
+  <div *ngIf="endereco.cep === ''; else contentCep">
+    Nenhum CEP encontrado
+  </div>
+  
+  <ng-template #contentCep>
+    <span>CEP: {{endereco.cep}}</span> <br/>
+    <span>Logradouro: {{endereco.logradouro}}</span><br/>
+    <span>Complemento: {{endereco.complemento}}</span><br/>
+    <span>Bairro: {{endereco.bairro}}</span><br/>
+    <span>Localidade: {{endereco.localidade}}</span><br/>
+    <span>UF: {{endereco.uf}}</span><br/>
+  </ng-template>

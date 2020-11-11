@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitlePageService } from 'src/app/core/services/title-page.service';
 
 @Component({
   selector: 'app-ataques',
@@ -15,7 +16,9 @@ export class AtaquesComponent implements OnInit {
     phone: null,
   }
 
-  constructor() { }
+  constructor(private titlePageService: TitlePageService) {
+    this.titlePageService.atualizaTitulo('Ataques');
+  }
 
   ngOnInit(): void {
   }

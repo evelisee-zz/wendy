@@ -3,31 +3,50 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { AtaquesModule } from './pages/ataques/ataques.module';
-import { CadastroModule } from './pages/cadastro/cadastro.module';
-import { HomeModule } from './pages/home/home.module';
 import { RouterModule, Routes } from '@angular/router';
-import { AtaquesComponent } from './pages/ataques/ataques.component';
-import { CadastroComponent } from './pages/cadastro/cadastro.component';
-import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './core/auth.guard';
+
+// const appRoutes: Routes = [
+//   {
+//     path: 'ataques', component: AtaquesComponent
+//   },
+//   {
+//     path: 'cadastro', component: CadastroComponent
+//   },
+//   {
+//     path: 'lista', component: HomeComponent
+//   },
+//   {
+//     path: '', redirectTo: 'lista',  pathMatch: 'full'
+//   },
+//   {
+//     path: '**', redirectTo: ''
+//   }
+// ]
 
 const appRoutes: Routes = [
   {
-    path: 'ataques', component: AtaquesComponent
+    path: 'lista',
+    loadChildren: () => import('./pages/home/home.module').then(modulo => modulo.HomeModule)
   },
   {
-    path: 'cadastro', component: CadastroComponent
+    path: 'ataques',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/ataques/ataques.module').then(modulo => modulo.AtaquesModule)
   },
   {
-    path: 'lista', component: HomeComponent
+    path: 'cadastro',
+    loadChildren: () => import('./pages/cadastro/cadastro.module').then(modulo => modulo.CadastroModule)
   },
   {
     path: '', redirectTo: 'lista',  pathMatch: 'full'
   },
   {
-    path: '**', redirectTo: ''
+    path: '**', redirectTo: 'lista'
   }
 ]
+
+
 
 @NgModule({
   //components, diretivas, pipes
@@ -38,13 +57,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     SharedModule,
-    AtaquesModule,
-    CadastroModule,
-    HomeModule,
     RouterModule.forRoot(appRoutes)
   ],
   //servicos
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

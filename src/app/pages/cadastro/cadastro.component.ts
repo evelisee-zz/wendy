@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TitlePageService } from 'src/app/core/services/title-page.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,6 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+  valoresPersonagem;
   dadosCadastro = {
     nome: '',
     raca: '',
@@ -14,8 +16,14 @@ export class CadastroComponent implements OnInit {
     nivel: '',
     phone: ''
   }
-
-  constructor() { }
+  campo = {
+    nome: '',
+    placeholder: 'Digite o sobrenome',
+  }
+  
+  constructor(private titlePageService: TitlePageService) {
+    this.titlePageService.atualizaTitulo('Cadastro');
+  }
 
   ngOnInit(): void {
   }
@@ -23,9 +31,14 @@ export class CadastroComponent implements OnInit {
   cadastrar(form: NgForm)  {
     form.control.markAllAsTouched();
     if(form.valid){
-      localStorage.setItem('personagem', JSON.stringify(form.value));
+      this.valoresPersonagem = {...this.dadosCadastro};
+      localStorage.setItem('cadastro', JSON.stringify(form.value));
       form.control.reset();
     }
+  }
+
+  onValuesChange(cardValues){
+    this.dadosCadastro = cardValues;
   }
 
 }
